@@ -11,7 +11,7 @@ An app to organize your notes in a beautiful way and learn React + Redux + Types
 
     `yarn add -E jsc-react-ui`
 
-_Note 1: All you'll need related to UI is present in this lib. Also, `jsc-react-ui` already have built-in typescript definitions. You can see some docs [here](https://danilobjr.github.io/jsc-react-ui/)._
+_Note 1: All you'll need related to UI is present in this lib. Also, `jsc-react-ui` already have built-in typescript definitions. You can see some docs [here](https://github.com/danilobjr/jsc-react-ui)._
 
 _Note 2: For styling, you can use inline styles in a [vanilla way](https://facebook.github.io/react/docs/dom-elements.html#style) or using [Radium](http://formidable.com/open-source/radium/)._
 
