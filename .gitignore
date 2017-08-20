@@ -60,3 +60,7 @@ typings/
 # Next files
 .next
 
+# Remove compiled files
+components/**/*.js
+pages/**/*.js
+
