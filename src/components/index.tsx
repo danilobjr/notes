@@ -1,3 +1,12 @@
-import * as React from 'react'
+import * as React from 'react';
+import {Component} from 'react';
 
-export default () => <h1>Hello</h1>
+export default class CardList extends Component {
+
+  render() {
+        return (
+            <div>sdsd
+            </div>
+        );
+    }
+}

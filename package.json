@@ -5,10 +5,13 @@
   "repository": "https://github.com/danilobjr/notes.git",
   "license": "MIT",
   "dependencies": {
+    "@types/react": "^16.0.2",
     "concurrently": "3.5.0",
+    "jsc-react-ui": "1.0.2",
     "next": "^3.0.6",
-    "react": "^15.6.1",
+    "radium": "^0.19.4",
     "react-dom": "^15.6.1",
+    "tslib": "^1.7.1",
     "typescript": "^2.4.2"
   },
   "scripts": {
