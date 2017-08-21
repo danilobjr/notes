@@ -2,6 +2,8 @@
 
 An app to organize your notes in a beautiful way and learn React + Redux + Typescript
 
+![Alt text](notes.png?raw=true "Notes")
+
 ## Getting Started
 
 ### Setup
