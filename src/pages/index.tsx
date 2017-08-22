@@ -13,28 +13,30 @@ const styles = {
   }
 };
 
-//não consegui passar este estilo na div
-const wrapperStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-};
+class CardModel {
+  id: number;
+  title: string;
+  text: string; 
+}
 
-export default class Index extends Component {
+interface State {
+  cards: CardModel[];
+}
+
+export default class Index extends Component<{}, State> {
+
+  state: State = {
+    cards: [
+      {id: 1, title:"Example title1", text: "Example Content"},
+    ],
+  };
+
   render() {
+    const {cards} = this.state;
+    
     return (
         <div style={styles.wrapper}>
-          <Card
-            style={styles.card}
-            title="Card 1"
-            image="https://facebook.github.io/react/img/logo.svg">
-              Sed tempus, odio nec laoreet pulvinar.
-          </Card>
-          <Card
-            style={styles.card}
-            title="Card 2"
-            image="https://facebook.github.io/react/img/logo.svg">
-              Sed tempus, odio nec laoreet pulvinar.
-          </Card>
+          {cards.map(c => <Card key={c.id} style={styles.card} title={c.title}>{c.text}</Card>)}
         </div>
     );
   }
