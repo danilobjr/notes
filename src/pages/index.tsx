@@ -16,7 +16,13 @@ const styles = {
 class CardModel {
   id: number;
   title: string;
-  text: string; 
+  text: string;
+
+  constructor(id:number, title:string, text:string){
+    this.id = id;
+    this.title = title;
+    this.text = text;
+  }
 }
 
 interface State {
@@ -27,7 +33,7 @@ export default class Index extends Component<{}, State> {
 
   state: State = {
     cards: [
-      {id: 1, title:"Example title1", text: "Example Content"},
+      new CardModel(1, "Example title1asd", "Example Content"),
     ],
   };
 
