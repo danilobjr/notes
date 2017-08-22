@@ -6,11 +6,13 @@ import {Card} from 'jsc-react-ui';
 const styles = {
   wrapper: {
     display: 'flex',
-    flexDirection: 'column',
+    padding: 10,
+    flexWrap: 'wrap',
   } as CSSProperties,
   card: {
     width: 246,
-  }
+    margin: '25px 0 0 25px',
+  },
 };
 
 class CardModel {
@@ -34,6 +36,7 @@ export default class Index extends Component<{}, State> {
   state: State = {
     cards: [
       new CardModel(1, "Example title1asd", "Example Content"),
+      new CardModel(2, "Example title1asd", "Example Content"),
     ],
   };
 
