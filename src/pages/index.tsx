@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {Component} from 'react';
-import {CSSProperties} from 'react';
+import {Component, CSSProperties} from 'react';
 import {Card} from 'jsc-react-ui';
 
 const styles = {
@@ -15,16 +14,10 @@ const styles = {
   },
 };
 
-class CardModel {
+interface CardModel {
   id: number;
   title: string;
   text: string;
-
-  constructor(id:number, title:string, text:string){
-    this.id = id;
-    this.title = title;
-    this.text = text;
-  }
 }
 
 interface State {
@@ -35,8 +28,8 @@ export default class Index extends Component<{}, State> {
 
   state: State = {
     cards: [
-      new CardModel(1, "Example title1asd", "Example Content"),
-      new CardModel(2, "Example title1asd", "Example Content"),
+      {id:1, title: "Example title1", text: "Example Content"},
+      {id:2, title: "Example title2", text: "Example Content"},
     ],
   };
 
@@ -45,7 +38,15 @@ export default class Index extends Component<{}, State> {
     
     return (
         <div style={styles.wrapper}>
-          {cards.map(c => <Card key={c.id} style={styles.card} title={c.title}>{c.text}</Card>)}
+          {cards.map(c => 
+            <Card
+              key={c.id}
+              style={styles.card}
+              title={c.title}
+            >
+                {c.text}
+            </Card>
+          )}
         </div>
     );
   }
