@@ -57,3 +57,10 @@ typings/
 # dotenv environment variables file
 .env
 
+# Next files
+.next
+
+# Remove compiled files
+components/**/*.js
+pages/**/*.js
+
