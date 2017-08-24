@@ -53,7 +53,7 @@ export default class Index extends Component<{}, State> {
             placeholder="Search"
             leftElement={<Icon style={styles.icon}
             name="search" />}
-            onChange={this.handleChange}
+            onChange={this.handleFilterChange}
           />
           <div style={styles.wrapper}>
             {filteredCards.map(c => 
@@ -70,7 +70,7 @@ export default class Index extends Component<{}, State> {
     );
   }
 
-  handleChange = (event) => {
+  handleFilterChange = (event) => {
     const {value} = event.target;
 
     const cards = this.state.initialCards.filter((card) => {
