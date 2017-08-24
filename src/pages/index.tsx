@@ -73,10 +73,10 @@ export default class Index extends Component<{}, State> {
   handleFilterChange = (event) => {
     const {value} = event.target;
 
-    const cards = this.state.initialCards.filter((card) => {
+    const filteredCards = this.state.initialCards.filter((card) => {
       return card.title.toUpperCase().includes(value.toUpperCase());
     })
 
-    this.setState({filteredCards: cards});
+    this.setState({filteredCards});
   }
 }
