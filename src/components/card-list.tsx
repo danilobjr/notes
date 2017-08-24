@@ -6,8 +6,8 @@ import {CardModel} from './../types/card-model'
 const styles = {
   wrapper: {
     display: 'flex',
-    padding: 10,
-    flexWrap: 'wrap'
+    paddingTop: 10,
+    flexWrap: 'wrap',
   } as CSSProperties,
   card: {
     width: 246,

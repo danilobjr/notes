@@ -5,6 +5,9 @@ import {CardList} from './../components/card-list'
 import {CardModel} from './../types/card-model'
 
 const styles = {
+  container: {
+    padding: 10,
+  },
   filter: {
     width: 246,
     margin: '25px 0 0 25px',
@@ -38,7 +41,7 @@ export default class Index extends Component<{}, State> {
     const {filteredCards} = this.state;
     
     return (
-      <div>
+      <div style={styles.container}>
         <FloatingInput
           style={styles.filter}
           placeholder="Search"
