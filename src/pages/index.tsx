@@ -27,24 +27,24 @@ interface CardModel {
 }
 
 interface State {
-  cards: CardModel[];
+  initialCards: CardModel[];
   filteredCards: CardModel[];
 }
 
 export default class Index extends Component<{}, State> {
 
   state: State = {
-    cards: [
+    initialCards: [
       {id:1, title: "Fazer listagem", text: "listar os cards"},
       {id:2, title: "Filtrar listagem", text: "exibir os cards de acordo com a busca"},
       {id:3, title: "Adicionar cards", text: "criar form em modal"}
     ],
-    filteredCards: [
-      {id:1, title: "Fazer listagem", text: "listar os cards"},
-      {id:2, title: "Filtrar listagem", text: "exibir os cards de acordo com a busca"},
-      {id:3, title: "Adicionar cards", text: "criar form em modal"}
-    ]
+    filteredCards: []
   };
+
+  componentWillMount() {
+    this.state.filteredCards = this.state.initialCards;
+  }
 
   render() {
     const {filteredCards} = this.state;
@@ -74,7 +74,7 @@ export default class Index extends Component<{}, State> {
   handleChange = (event) => {
     const {value} = event.target;
 
-    const cards = this.state.cards.filter((card) => {
+    const cards = this.state.initialCards.filter((card) => {
       return card.title.toUpperCase().includes(value.toUpperCase());
     })
 
