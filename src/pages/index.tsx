@@ -12,9 +12,6 @@ const styles = {
     width: 246,
     margin: '25px 0 0 25px',
   },
-  base: {
-    width: 246,
-  },
   icon: {
     margin: '0 14px 0 18px',
   },
@@ -50,23 +47,25 @@ export default class Index extends Component<{}, State> {
     const {filteredCards} = this.state;
     
     return (
-        <div style={styles.wrapper}>
-            <FloatingInput
-              style={styles.base}
-              placeholder="Search"
-              leftElement={<Icon style={styles.icon}
-              name="search" />}
-              onChange={this.handleChange}
-            />
-          {filteredCards.map(c => 
-            <Card
-              key={c.id}
-              style={styles.card}
-              title={c.title}
-            >
-                {c.text}
-            </Card>
-          )}
+        <div>
+          <FloatingInput
+            style={styles.card}
+            placeholder="Search"
+            leftElement={<Icon style={styles.icon}
+            name="search" />}
+            onChange={this.handleChange}
+          />
+          <div style={styles.wrapper}>
+            {filteredCards.map(c => 
+              <Card
+                key={c.id}
+                style={styles.card}
+                title={c.title}
+              >
+                  {c.text}
+              </Card>
+            )}
+          </div>
         </div>
     );
   }
