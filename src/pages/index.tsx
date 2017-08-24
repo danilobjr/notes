@@ -1,14 +1,11 @@
 import * as React from 'react';
-import {Component, CSSProperties} from 'react';
-import {Card, FloatingInput, Icon} from 'jsc-react-ui';
+import {Component} from 'react';
+import {FloatingInput, Icon} from 'jsc-react-ui';
+import {CardList} from './../components/card-list'
+import {CardModel} from './../types/card-model'
 
 const styles = {
-  wrapper: {
-    display: 'flex',
-    padding: 10,
-    flexWrap: 'wrap'
-  } as CSSProperties,
-  card: {
+  filter: {
     width: 246,
     margin: '25px 0 0 25px',
   },
@@ -16,12 +13,6 @@ const styles = {
     margin: '0 14px 0 18px',
   },
 };
-
-interface CardModel {
-  id: number;
-  title: string;
-  text: string;
-}
 
 interface State {
   initialCards: CardModel[];
@@ -49,23 +40,13 @@ export default class Index extends Component<{}, State> {
     return (
         <div>
           <FloatingInput
-            style={styles.card}
+            style={styles.filter}
             placeholder="Search"
             leftElement={<Icon style={styles.icon}
             name="search" />}
             onChange={this.handleFilterChange}
           />
-          <div style={styles.wrapper}>
-            {filteredCards.map(c => 
-              <Card
-                key={c.id}
-                style={styles.card}
-                title={c.title}
-              >
-                  {c.text}
-              </Card>
-            )}
-          </div>
+          <CardList cards={filteredCards} />
         </div>
     );
   }

@@ -19,7 +19,7 @@
     "start": "next start",
     "predev": "npm run tsc",
     "dev": "concurrently \"npm run watch:tsc\" \"next\"",
-    "remove:transpiled": "rimraf pages components",
+    "remove:transpiled": "rimraf pages components types",
     "watch:tsc": "tsc --watch",
     "tsc": "npm run remove:transpiled && tsc"
   }
