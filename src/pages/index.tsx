@@ -38,16 +38,16 @@ export default class Index extends Component<{}, State> {
     const {filteredCards} = this.state;
     
     return (
-        <div>
-          <FloatingInput
-            style={styles.filter}
-            placeholder="Search"
-            leftElement={<Icon style={styles.icon}
-            name="search" />}
-            onChange={this.handleFilterChange}
-          />
-          <CardList cards={filteredCards} />
-        </div>
+      <div>
+        <FloatingInput
+          style={styles.filter}
+          placeholder="Search"
+          leftElement={<Icon style={styles.icon}
+          name="search" />}
+          onChange={this.handleFilterChange}
+        />
+        <CardList cards={filteredCards} />
+      </div>
     );
   }
 

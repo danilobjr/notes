@@ -20,15 +20,15 @@ interface Props {
 }
 
 export const CardList: SFC<Props> = ({cards}) => (
-    <div style={styles.wrapper}>
-      {cards.map(c => 
-        <Card
-          key={c.id}
-          style={styles.card}
-          title={c.title}
-        >
-            {c.text}
-        </Card>
-      )}
-    </div>
+  <div style={styles.wrapper}>
+    {cards.map(c => 
+      <Card
+        key={c.id}
+        style={styles.card}
+        title={c.title}
+      >
+          {c.text}
+      </Card>
+    )}
+  </div>
 );
