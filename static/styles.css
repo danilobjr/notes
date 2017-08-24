@@ -2,3 +2,7 @@ body {
   font-family: Roboto, sans-serif, helvetica;
   background-color: #ebebeb;
 }
+
+* {
+  outline: none;
+}
