@@ -25,16 +25,16 @@ interface State {
 export default class Index extends Component<{}, State> {
 
   state: State = {
-    initialCards: [
-      {id:1, title: "Fazer listagem", text: "listar os cards"},
-      {id:2, title: "Filtrar listagem", text: "exibir os cards de acordo com a busca"},
-      {id:3, title: "Adicionar cards", text: "criar form em modal"}
-    ],
+    initialCards: [],
     filteredCards: []
   };
 
-  componentWillMount() {
-    this.state.filteredCards = this.state.initialCards;
+  componentDidMount() {
+    fetch("/static/api/cards.json")
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({initialCards: responseJson, filteredCards: responseJson});
+      });
   }
 
   render() {
