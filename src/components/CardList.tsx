@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {CSSProperties, SFC} from 'react';
 import {Card} from 'jsc-react-ui';
-import {Note} from './../types/Note'
+import {Note} from './../types/Note';
 
 const styles = {
   wrapper: {
@@ -21,14 +21,14 @@ interface Props {
 
 export const CardList: SFC<Props> = ({cards}) => (
   <div style={styles.wrapper}>
-    {cards.map(c => 
+    {cards.map(c =>
       <Card
         key={c.id}
         style={styles.card}
         title={c.title}
       >
           {c.text}
-      </Card>
+      </Card>,
     )}
   </div>
 );

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Component} from 'react';
 import {FloatingInput, Icon} from 'jsc-react-ui';
-import {CardList} from './../components/CardList'
-import {Note} from './../types/Note'
+import {CardList} from './../components/CardList';
+import {Note} from './../types/Note';
 
 const styles = {
   container: {
@@ -18,19 +18,19 @@ const styles = {
 };
 
 interface State {
-  cards: Note[],
-  filter: string
+  cards: Note[];
+  filter: string;
 }
 
 export default class Index extends Component<{}, State> {
 
   state: State = {
     cards: [],
-    filter: ""
+    filter: '',
   };
 
   componentDidMount() {
-    fetch("/static/api/cards.json")
+    fetch('/static/api/cards.json')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({cards: responseJson});
@@ -39,7 +39,7 @@ export default class Index extends Component<{}, State> {
 
   render() {
     const {cards} = this.state;
-    
+
     return (
       <div style={styles.container}>
         <FloatingInput
@@ -59,10 +59,10 @@ export default class Index extends Component<{}, State> {
 
     return cards.filter((card) => {
       return card.title.toUpperCase().includes(filter.toUpperCase());
-    })
+    });
   }
 
-  handleFilterChange = (event) => {
+  handleFilterChange = (event: any) => {
     const {value} = event.target;
     this.setState({filter: value});
   }
