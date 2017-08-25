@@ -18,27 +18,27 @@ const styles = {
 };
 
 interface State {
-  initialCards: Note[];
-  filteredCards: Note[];
+  cards: Note[],
+  filter: string
 }
 
 export default class Index extends Component<{}, State> {
 
   state: State = {
-    initialCards: [],
-    filteredCards: []
+    cards: [],
+    filter: ""
   };
 
   componentDidMount() {
     fetch("/static/api/cards.json")
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({initialCards: responseJson, filteredCards: responseJson});
+        this.setState({cards: responseJson});
       });
   }
 
   render() {
-    const {filteredCards} = this.state;
+    const {cards} = this.state;
     
     return (
       <div style={styles.container}>
@@ -49,18 +49,21 @@ export default class Index extends Component<{}, State> {
           name="search" />}
           onChange={this.handleFilterChange}
         />
-        <CardList cards={filteredCards} />
+        <CardList cards={this.getFilteredCards()} />
       </div>
     );
   }
 
+  getFilteredCards = () => {
+    const {cards, filter} = this.state;
+
+    return cards.filter((card) => {
+      return card.title.toUpperCase().includes(filter.toUpperCase());
+    })
+  }
+
   handleFilterChange = (event) => {
     const {value} = event.target;
-
-    const filteredCards = this.state.initialCards.filter((card) => {
-      return card.title.toUpperCase().includes(value.toUpperCase());
-    })
-
-    this.setState({filteredCards});
+    this.setState({filter: value});
   }
 }
