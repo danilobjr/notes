@@ -18,27 +18,27 @@ const styles = {
 };
 
 interface State {
-  cards: Note[];
+  notes: Note[];
   filter: string;
 }
 
 export default class Index extends Component<{}, State> {
 
   state: State = {
-    cards: [],
+    notes: [],
     filter: '',
   };
 
   componentDidMount() {
-    fetch('/static/api/cards.json')
+    fetch('/static/api/notes.json')
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({cards: responseJson});
+        this.setState({notes: responseJson});
       });
   }
 
   render() {
-    const {cards} = this.state;
+    const {notes} = this.state;
 
     return (
       <div style={styles.container}>
@@ -55,10 +55,10 @@ export default class Index extends Component<{}, State> {
   }
 
   getFilteredCards = () => {
-    const {cards, filter} = this.state;
+    const {notes, filter} = this.state;
 
-    return cards.filter((card) => {
-      return card.title.toUpperCase().includes(filter.toUpperCase());
+    return notes.filter((note) => {
+      return note.title.toUpperCase().includes(filter.toUpperCase());
     });
   }
 
