@@ -45,8 +45,7 @@ export default class Index extends Component<{}, State> {
         <FloatingInput
           style={styles.filter}
           placeholder="Search"
-          leftElement={<Icon style={styles.icon}
-          name="search" />}
+          leftElement={<Icon style={styles.icon} name="search" />}
           onChange={this.handleFilterChange}
         />
         <CardList cards={this.getFilteredCards()} />
