@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Component} from 'react';
 import {FloatingInput, Icon} from 'jsc-react-ui';
-import {CardList} from './../components/card-list'
-import {CardModel} from './../types/card-model'
+import {CardList} from './../components/CardList'
+import {Note} from './../types/Note'
 
 const styles = {
   container: {
@@ -18,8 +18,8 @@ const styles = {
 };
 
 interface State {
-  initialCards: CardModel[];
-  filteredCards: CardModel[];
+  initialCards: Note[];
+  filteredCards: Note[];
 }
 
 export default class Index extends Component<{}, State> {

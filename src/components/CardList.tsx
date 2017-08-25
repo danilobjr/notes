@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {CSSProperties, SFC} from 'react';
 import {Card} from 'jsc-react-ui';
-import {CardModel} from './../types/card-model'
+import {Note} from './../types/Note'
 
 const styles = {
   wrapper: {
@@ -16,7 +16,7 @@ const styles = {
 };
 
 interface Props {
-  cards: CardModel[];
+  cards: Note[];
 }
 
 export const CardList: SFC<Props> = ({cards}) => (
