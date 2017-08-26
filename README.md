@@ -1,6 +1,6 @@
 # Notes
 
-An app to organize your notes in a beautiful way and learn React + Redux + Typescript
+An app to organize your notes in a beautiful way and learn React, Redux and Typescript
 
 ![Alt text](notes.png?raw=true "Notes")
 
@@ -8,7 +8,7 @@ An app to organize your notes in a beautiful way and learn React + Redux + Types
 
 ### Setup
 
-1. Start creating a basic project using next.js and typescript.
+1. Start creating a basic project using Webpack, React and Typescript.
 2. Then install UI Kit:
 
     `yarn add -E jsc-react-ui`
