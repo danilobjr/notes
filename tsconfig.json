@@ -1,26 +1,29 @@
 {
-    "compileOnSave": false,
-    "compilerOptions": {
-      "module": "commonjs",
-      "outDir": ".",
-      "sourceMap": false,
-      "target": "ES2016",
-      "declaration": false,
-      "noImplicitAny": false,
-      "removeComments": true,
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "moduleResolution": "node",
-      "importHelpers": true,
-      "jsx": "react",
-      "typeRoots": [
+  "compilerOptions": {
+    "module": "es2015",
+    "sourceMap": true,
+    "target": "ES2016",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "jsx": "react",
+    "typeRoots": [
       "node_modules/@types"
-      ]
-    },
-    "include" :[
-        "src/**/*"
     ],
-    "exclude": [
-        "node_modules"
-    ]
+    "baseUrl": "./src",
+    "paths": {
+      "components": ["components"],
+      "models": ["models"]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
