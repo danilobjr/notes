@@ -1,53 +1,68 @@
 import * as React from 'react';
-import {Component, CSSProperties} from 'react';
-import {Card} from 'jsc-react-ui';
+import {Component} from 'react';
+import {FloatingInput, Icon} from 'jsc-react-ui';
+import {CardList} from './../components/CardList';
+import {Note} from './../types/Note';
 
 const styles = {
-  wrapper: {
-    display: 'flex',
+  container: {
     padding: 10,
-    flexWrap: 'wrap',
-  } as CSSProperties,
-  card: {
+  },
+  filter: {
     width: 246,
     margin: '25px 0 0 25px',
   },
+  icon: {
+    margin: '0 14px 0 18px',
+  },
 };
 
-interface CardModel {
-  id: number;
-  title: string;
-  text: string;
-}
-
 interface State {
-  cards: CardModel[];
+  notes: Note[];
+  filter: string;
 }
 
 export default class Index extends Component<{}, State> {
 
   state: State = {
-    cards: [
-      {id:1, title: "Example title1", text: "Example Content"},
-      {id:2, title: "Example title2", text: "Example Content"},
-    ],
+    notes: [],
+    filter: '',
   };
 
+  componentDidMount() {
+    fetch('/static/api/notes.json')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({notes: responseJson});
+      });
+  }
+
   render() {
-    const {cards} = this.state;
-    
+    const {notes} = this.state;
+
     return (
-        <div style={styles.wrapper}>
-          {cards.map(c => 
-            <Card
-              key={c.id}
-              style={styles.card}
-              title={c.title}
-            >
-                {c.text}
-            </Card>
-          )}
-        </div>
+      <div style={styles.container}>
+        <FloatingInput
+          style={styles.filter}
+          placeholder="Search"
+          leftElement={<Icon style={styles.icon} name="search" />}
+          onChange={this.handleFilterChange}
+        />
+        <CardList cards={this.getFilteredCards()} />
+      </div>
     );
+  }
+
+  getFilteredCards = () => {
+    const {notes, filter} = this.state;
+
+    return notes.filter((note) => {
+      return note.title.toUpperCase().includes(filter.toUpperCase());
+    });
+  }
+
+  handleFilterChange = (event: any) => {
+    const {value} = event.target;
+    this.setState({filter: value});
   }
 }

@@ -63,4 +63,5 @@ typings/
 # Remove compiled files
 components/**/*.js
 pages/**/*.js
+types/**/*.js
 

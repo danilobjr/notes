@@ -26,13 +26,7 @@ export default class MyDocument extends Document {
 
           <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700" rel="stylesheet" />
           <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css" rel="stylesheet" />
-
-          <style>{`
-            body {
-              font-family: Roboto, sans-serif, helvetica;
-              background-color: #ebebeb;
-            }
-          `}</style>
+          <link href="/static/styles.css" rel="stylesheet" />
         </Head>
         <body className="custom_class">
           <Main />
