@@ -40,7 +40,7 @@ export class App extends Component<{}, State> {
   };
 
   componentDidMount() {
-    fetch('/static/api/notes.json')
+    fetch('api/notes.json')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({notes: responseJson});
