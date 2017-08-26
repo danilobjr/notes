@@ -3,7 +3,7 @@ import {Component, CSSProperties} from 'react';
 import {FloatingInput, Icon, IconButton} from 'jsc-react-ui';
 import {CardList} from './../components/CardList';
 import {CardForm} from './../components/CardForm';
-import {Note} from './../types/Note';
+import {Note} from './../models/Note';
 
 const styles = {
   container: {
@@ -31,7 +31,7 @@ interface State {
   modalOpen: boolean;
 }
 
-export default class Index extends Component<{}, State> {
+export class App extends Component<{}, State> {
 
   state: State = {
     notes: [],
