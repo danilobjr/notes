@@ -30,13 +30,11 @@ interface Props {
   onClose?: () => void;
 }
 
-export class CardForm extends Component<Props, Note> {
+interface State extends Note {}
 
-  props: Props = {
-    open: false,
-  };
+export class CardForm extends Component<Props, State> {
 
-  state: Note = this.getInitialState();
+  state: State = this.getInitialState();
 
   render() {
     const {open} = this.props;
