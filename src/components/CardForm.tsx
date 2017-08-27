@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component, CSSProperties} from 'react';
 import {Modal, ModalHeader, ModalBody, ModalFooter, Button} from 'jsc-react-ui';
-import {Note} from './../models/Note';
+import {Note} from 'models';
 
 const styles = {
   modal: {

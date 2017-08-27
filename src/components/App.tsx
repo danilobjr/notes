@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {Component, CSSProperties} from 'react';
 import {FloatingInput, Icon, IconButton} from 'jsc-react-ui';
-import {CardList} from './../components/CardList';
-import {CardForm} from './../components/CardForm';
-import {Note} from './../models/Note';
+import {CardList, CardForm} from 'components';
+import {Note} from 'models';
 
 const styles = {
   container: {
