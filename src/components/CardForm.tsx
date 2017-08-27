@@ -34,10 +34,17 @@ interface State extends Note {}
 
 export class CardForm extends Component<Props, State> {
 
+  static defaultProps: Props = {
+    open: false,
+    onSave: () => { return; },
+    onClose: () => { return; },
+  };
+
   state: State = this.getInitialState();
 
   render() {
-    const {open} = this.props;
+    const {open, onClose} = this.props;
+    const {text, title} = this.state;
 
     return (
       <div>
@@ -45,7 +52,7 @@ export class CardForm extends Component<Props, State> {
           style={styles.modal}
           noBackdrop
           open={open}
-          onClose={this.props.onClose}
+          onClose={onClose}
         >
           <ModalHeader>
             <input
@@ -53,7 +60,7 @@ export class CardForm extends Component<Props, State> {
               type="text"
               placeholder="Title"
               name="title"
-              value={this.state.title}
+              value={title}
               onChange={this.handleInputChange}
             />
           </ModalHeader>
@@ -63,7 +70,7 @@ export class CardForm extends Component<Props, State> {
               style={styles.textarea}
               placeholder="Write some thoughts."
               name="text"
-              value={this.state.text}
+              value={text}
               onChange={this.handleInputChange}
             />
           </ModalBody>
