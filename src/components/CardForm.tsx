@@ -83,8 +83,7 @@ export class CardForm extends Component<Props, State> {
 
   handleInputChange = (event: any) => {
     const {target} = event;
-    const {value} = target;
-    const {name} = target;
+    const {value, name} = target;
 
     this.setState({
       [name]: value,
@@ -96,7 +95,7 @@ export class CardForm extends Component<Props, State> {
       this.props.onSave(this.state);
       this.setState(this.getInitialState());
     } else {
-      alert('Title is mandatory');
+      this.props.onClose();
     }
   }
 
