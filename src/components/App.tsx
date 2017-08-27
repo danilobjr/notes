@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Component, CSSProperties} from 'react';
+import {Component, CSSProperties, ChangeEvent} from 'react';
 import {FloatingInput, Icon, FAB} from 'jsc-react-ui';
 import {CardList, CardForm} from 'components';
 import {Note} from 'models';
@@ -81,7 +81,7 @@ export class App extends Component<{}, State> {
     });
   }
 
-  handleFilterChange = (event: any) => {
+  handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {value} = event.target;
     this.setState({filter: value});
   }
