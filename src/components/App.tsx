@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Component, CSSProperties} from 'react';
-import {FloatingInput, Icon, IconButton} from 'jsc-react-ui';
+import {FloatingInput, Icon, FAB} from 'jsc-react-ui';
 import {CardList, CardForm} from 'components';
 import {Note} from 'models';
 
@@ -18,9 +18,6 @@ const styles = {
   },
   icon: {
     margin: '0 14px 0 18px',
-  },
-  iconButton : {
-    backgroundColor: '#F1C40F',
   },
 };
 
@@ -58,14 +55,21 @@ export class App extends Component<{}, State> {
             leftElement={<Icon style={styles.icon} name="search" />}
             onChange={this.handleFilterChange}
           />
-          <IconButton style={styles.iconButton}
+          <FAB
             iconName="plus"
-            onClick={this.handleNewButtonClick} />
+            color="#f1c40f"
+            iconColor="#2c3e50"
+            onClick={this.handleNewButtonClick}
+          />
         </div>
-        <CardList cards={this.getFilteredCards()} />
-        <CardForm open={modalOpen}
+        <CardList
+          cards={this.getFilteredCards()}
+        />
+        <CardForm
+          open={modalOpen}
           onSave={this.handleOnModalSave}
-          onClose={this.handleOnModalClose} />
+          onClose={this.handleOnModalClose}
+        />
       </div>
     );
   }
