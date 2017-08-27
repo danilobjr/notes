@@ -35,12 +35,11 @@ export class App extends Component<{}, State> {
     modalOpen: false,
   };
 
-  componentDidMount() {
-    fetch('api/notes.json')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({notes: responseJson});
-      });
+  async componentDidMount() {
+    const notes = await fetch('api/notes.json')
+      .then(response => response.json());
+
+      this.setState({notes});
   }
 
   render() {
