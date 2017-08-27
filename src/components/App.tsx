@@ -97,6 +97,6 @@ export class App extends Component<{}, State> {
 
   handleOnModalSave = (note: Note) => {
     const notes = [...this.state.notes, note];
-    this.setState({notes: notes, modalOpen: false});
+    this.setState({notes, modalOpen: false});
   }
 }
