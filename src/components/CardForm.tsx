@@ -47,39 +47,37 @@ export class CardForm extends Component<Props, State> {
     const {text, title} = this.state;
 
     return (
-      <div>
-        <Modal
-          style={styles.modal}
-          noBackdrop
-          open={open}
-          onClose={onClose}
-        >
-          <ModalHeader>
-            <input
-              style={styles.input}
-              type="text"
-              placeholder="Title"
-              name="title"
-              value={title}
-              onChange={this.handleInputChange}
-            />
-          </ModalHeader>
+      <Modal
+        style={styles.modal}
+        noBackdrop
+        open={open}
+        onClose={onClose}
+      >
+        <ModalHeader>
+          <input
+            style={styles.input}
+            type="text"
+            placeholder="Title"
+            name="title"
+            value={title}
+            onChange={this.handleInputChange}
+          />
+        </ModalHeader>
 
-          <ModalBody>
-            <textarea
-              style={styles.textarea}
-              placeholder="Write some thoughts."
-              name="text"
-              value={text}
-              onChange={this.handleInputChange}
-            />
-          </ModalBody>
+        <ModalBody>
+          <textarea
+            style={styles.textarea}
+            placeholder="Write some thoughts."
+            name="text"
+            value={text}
+            onChange={this.handleInputChange}
+          />
+        </ModalBody>
 
-          <ModalFooter>
-            <Button flat onClick={this.handleSaveButtonClick}>Save</Button>
-          </ModalFooter>
-        </Modal>
-      </div>
+        <ModalFooter>
+          <Button flat onClick={this.handleSaveButtonClick}>Save</Button>
+        </ModalFooter>
+      </Modal>
     );
   }
 
