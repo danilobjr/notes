@@ -91,12 +91,8 @@ export class CardForm extends Component<Props, State> {
   }
 
   handleSaveButtonClick = () => {
-    if (this.state.title !== '') {
       this.props.onSave(this.state);
       this.setState(this.getInitialState());
-    } else {
-      this.props.onClose();
-    }
   }
 
   getInitialState() {
