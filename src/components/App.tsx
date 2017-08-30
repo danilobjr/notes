@@ -1,8 +1,11 @@
 import * as React from 'react';
-import {Component, CSSProperties} from 'react';
+import {Component, CSSProperties, ChangeEvent} from 'react';
 import {FloatingInput, Icon, FAB} from 'jsc-react-ui';
 import {CardList, CardForm} from 'components';
 import {Note} from 'models';
+import {Dispatch} from 'redux';
+import {connect} from 'react-redux';
+import {setFilter, openAddModal, closeAddModal, addCard} from './../reducers/filter';
 
 const styles = {
   container: {
@@ -23,15 +26,20 @@ const styles = {
 
 interface State {
   notes: Note[];
-  filter: string;
   modalOpen: boolean;
 }
 
-export class App extends Component<{}, State> {
+interface Props {
+  filter: string;
+  modalOpen: boolean;
+  notes: Note[];
+  dispatch: any;
+}
+
+class Main extends Component<Props, State> {
 
   state: State = {
     notes: [],
-    filter: '',
     modalOpen: false,
   };
 
@@ -43,7 +51,7 @@ export class App extends Component<{}, State> {
   }
 
   render() {
-    const {notes, modalOpen} = this.state;
+    const {notes, modalOpen, filter} = this.props;
 
     return (
       <div style={styles.container}>
@@ -51,8 +59,9 @@ export class App extends Component<{}, State> {
           <FloatingInput
             style={styles.filter}
             placeholder="Search"
+            value={filter}
             leftElement={<Icon style={styles.icon} name="search" />}
-            onChange={this.handleFilterChange}
+            onChange={this.handleFilterChange as any}
           />
           <FAB
             iconName="plus"
@@ -74,34 +83,36 @@ export class App extends Component<{}, State> {
   }
 
   getFilteredCards = () => {
-    const {notes, filter} = this.state;
+    //const {notes} = this.state;
+    const {notes, filter} = this.props;
 
     return notes.filter((note) => {
       return note.title.toUpperCase().includes(filter.toUpperCase());
     });
   }
 
-  handleFilterChange = (event: any) => {
+  handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {value} = event.target;
-    this.setState({filter: value});
+    this.props.dispatch(setFilter(value));
   }
 
   handleNewButtonClick = () => {
-    this.setState({modalOpen: true});
+    this.props.dispatch(openAddModal());
   }
 
   handleOnModalClose = () => {
-    this.setState({modalOpen: false});
+    this.props.dispatch(closeAddModal());
   }
 
   handleOnModalSave = (note: Note) => {
 
-    let newState = {...this.state, modalOpen: false};
-
-    if (note.title !== '') {
-      newState.notes = [...newState.notes, note];
-    }
-
-    this.setState(newState);
+    this.props.dispatch(addCard(note.id, note.title, note.text));
+    this.handleOnModalClose();
   }
 }
+
+let mapStateToProps = function(state: any){
+  return {filter: state.filter, modalOpen: state.modal, notes: state.notes};
+};
+
+export const App = connect(mapStateToProps)(Main);

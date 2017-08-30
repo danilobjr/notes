@@ -19,7 +19,7 @@ module.exports = {
   resolve: {
     alias: {
       components: resolvePath('src/components'),
-      models: resolvePath('src/models'),
+      models: resolvePath('src/models')
     },
     extensions: [".js", ".json", '.ts', '.tsx', '.scss', '.sass'],
   },
