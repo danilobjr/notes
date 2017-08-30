@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {CSSProperties, SFC} from 'react';
 import {Card} from 'jsc-react-ui';
-import {Note} from './../types/Note';
+import {Note} from 'models';
 
 const styles = {
   wrapper: {
