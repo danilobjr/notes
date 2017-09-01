@@ -1,4 +1,4 @@
-import * as actionTypes from './../actionTypes';
+import * as actionTypes from 'actionTypes';
 
 export const setFilter = (filter: string) => {
   return { type: actionTypes.FILTER, filter };

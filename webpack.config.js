@@ -21,7 +21,8 @@ module.exports = {
       components: resolvePath('src/components'),
       models: resolvePath('src/models'),
       reducers: resolvePath('src/reducers'),
-      actions: resolvePath('src/actions')
+      actions: resolvePath('src/actions'),
+      actionTypes: resolvePath('src/actionTypes')
     },
     extensions: [".js", ".json", '.ts', '.tsx', '.scss', '.sass'],
   },
