@@ -5,7 +5,7 @@ import {CardList, CardForm} from 'components';
 import {Note} from 'models';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {setFilter, openAddModal, closeAddModal, addCard} from './../reducers/filter';
+import {setFilter, openAddModal, closeAddModal, addCard, loadCards} from './../reducers/filter';
 
 const styles = {
   container: {
@@ -24,11 +24,6 @@ const styles = {
   },
 };
 
-interface State {
-  notes: Note[];
-  modalOpen: boolean;
-}
-
 interface Props {
   filter: string;
   modalOpen: boolean;
@@ -36,18 +31,13 @@ interface Props {
   dispatch: any;
 }
 
-class Main extends Component<Props, State> {
-
-  state: State = {
-    notes: [],
-    modalOpen: false,
-  };
+class Main extends Component<Props, {}> {
 
   async componentDidMount() {
     const notes = await fetch('api/notes.json')
       .then(response => response.json());
 
-      this.setState({notes});
+      this.props.dispatch(loadCards(notes));
   }
 
   render() {
@@ -83,7 +73,6 @@ class Main extends Component<Props, State> {
   }
 
   getFilteredCards = () => {
-    //const {notes} = this.state;
     const {notes, filter} = this.props;
 
     return notes.filter((note) => {
@@ -111,7 +100,7 @@ class Main extends Component<Props, State> {
   }
 }
 
-let mapStateToProps = function(state: any){
+let mapStateToProps = (state: any) => {
   return {filter: state.filter, modalOpen: state.modal, notes: state.notes};
 };
 

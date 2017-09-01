@@ -2,6 +2,7 @@ const FILTER   = 'FILTER';
 const OPEN_MODAL   = 'OPEN_MODAL';
 const CLOSE_MODAL   = 'CLOSE_MODAL';
 const ADD_CARD   = 'ADD_CARD';
+const LOAD_CARDS   = 'LOAD_CARDS';
 
 export function setFilter(filter: string) {
   return { type: FILTER, filter };
@@ -16,7 +17,11 @@ export function closeAddModal() {
 
 export const addCard = (id, title, text) => {
   return { type: ADD_CARD, id, title, text };
-}
+};
+
+export const loadCards = (cards) => {
+  return { type: LOAD_CARDS, cards };
+};
 
 export const filter = (state = '', action) => {
   switch (action.type) {
@@ -42,6 +47,8 @@ export const notes = (state = [], action) => {
   switch (action.type) {
     case ADD_CARD:
       return [...state, {id: action.id, title: action.title, text: action.text}];
+    case LOAD_CARDS:
+      return action.cards;
     default:
       return state;
   }
