@@ -5,7 +5,9 @@ import {CardList, CardForm} from 'components';
 import {Note} from 'models';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {setFilter, openAddModal, closeAddModal, addCard, loadCards} from './../reducers/filter';
+import {setFilter} from './../reducers/filterReducer';
+import {openAddModal, closeAddModal} from './../reducers/modalReducer';
+import {addNote, loadNotes} from './../reducers/notesReducer';
 
 const styles = {
   container: {
@@ -37,7 +39,7 @@ class Main extends Component<Props, {}> {
     const notes = await fetch('api/notes.json')
       .then(response => response.json());
 
-      this.props.dispatch(loadCards(notes));
+      this.props.dispatch(loadNotes(notes));
   }
 
   render() {
@@ -95,7 +97,7 @@ class Main extends Component<Props, {}> {
 
   handleOnModalSave = (note: Note) => {
 
-    this.props.dispatch(addCard(note.id, note.title, note.text));
+    this.props.dispatch(addNote(note.id, note.title, note.text));
     this.handleOnModalClose();
   }
 }
