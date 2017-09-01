@@ -5,9 +5,7 @@ import {CardList, CardForm} from 'components';
 import {Note} from 'models';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {setFilter} from './../reducers/filterReducer';
-import {openAddModal, closeAddModal} from './../reducers/modalReducer';
-import {addNote, loadNotes} from './../reducers/notesReducer';
+import * as actions from './../actions';
 
 const styles = {
   container: {
@@ -39,7 +37,7 @@ class Main extends Component<Props, {}> {
     const notes = await fetch('api/notes.json')
       .then(response => response.json());
 
-      this.props.dispatch(loadNotes(notes));
+      this.props.dispatch(actions.loadNotes(notes));
   }
 
   render() {
@@ -84,20 +82,20 @@ class Main extends Component<Props, {}> {
 
   handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {value} = event.target;
-    this.props.dispatch(setFilter(value));
+    this.props.dispatch(actions.setFilter(value));
   }
 
   handleNewButtonClick = () => {
-    this.props.dispatch(openAddModal());
+    this.props.dispatch(actions.openAddModal());
   }
 
   handleOnModalClose = () => {
-    this.props.dispatch(closeAddModal());
+    this.props.dispatch(actions.closeAddModal());
   }
 
   handleOnModalSave = (note: Note) => {
 
-    this.props.dispatch(addNote(note.id, note.title, note.text));
+    this.props.dispatch(actions.addNote(note.id, note.title, note.text));
     this.handleOnModalClose();
   }
 }

@@ -1,15 +1,6 @@
-const ADD_NOTE = 'ADD_NOTE';
-const LOAD_NOTES = 'LOAD_NOTES';
+import { ADD_NOTE, LOAD_NOTES } from './../actionTypes';
 
-export const addNote = (id, title, text) => {
-  return { type: ADD_NOTE, id, title, text };
-};
-
-export const loadNotes = (notes) => {
-  return { type: LOAD_NOTES, notes };
-};
-
-export const notes = (state = [], action) => {
+export default (state = [], action) => {
   switch (action.type) {
     case ADD_NOTE:
       return [...state, { id: action.id, title: action.title, text: action.text }];

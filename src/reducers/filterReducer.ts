@@ -1,10 +1,6 @@
-const FILTER = 'FILTER';
+import { FILTER } from './../actionTypes';
 
-export const setFilter = (filter: string) => {
-  return { type: FILTER, filter };
-};
-
-export const filter = (state = '', action) => {
+export default (state = '', action) => {
   switch (action.type) {
     case FILTER:
       return action.filter;
