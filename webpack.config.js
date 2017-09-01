@@ -20,7 +20,8 @@ module.exports = {
     alias: {
       components: resolvePath('src/components'),
       models: resolvePath('src/models'),
-      reducers: resolvePath('src/reducers')
+      reducers: resolvePath('src/reducers'),
+      actions: resolvePath('src/actions')
     },
     extensions: [".js", ".json", '.ts', '.tsx', '.scss', '.sass'],
   },
