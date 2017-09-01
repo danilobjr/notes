@@ -61,7 +61,7 @@ class Main extends Component<Props, {}> {
           />
         </div>
         <CardList
-          cards={this.getFilteredCards()}
+          cards={this.props.notes}
         />
         <CardForm
           open={modalOpen}
@@ -70,14 +70,6 @@ class Main extends Component<Props, {}> {
         />
       </div>
     );
-  }
-
-  getFilteredCards = () => {
-    const {notes, filter} = this.props;
-
-    return notes.filter((note) => {
-      return note.title.toUpperCase().includes(filter.toUpperCase());
-    });
   }
 
   handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -100,8 +92,15 @@ class Main extends Component<Props, {}> {
   }
 }
 
+const getFilteredNotes = (notes: Note[], filter: string) => {
+
+    return notes.filter((note) => {
+      return note.title.toUpperCase().includes(filter.toUpperCase());
+    });
+  };
+
 let mapStateToProps = (state: any) => {
-  return {filter: state.filter, modalOpen: state.modal, notes: state.notes};
+  return {filter: state.filter, modalOpen: state.modal, notes: getFilteredNotes(state.notes, state.filter)};
 };
 
 export const App = connect(mapStateToProps)(Main);
