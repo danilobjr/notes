@@ -100,7 +100,11 @@ const getFilteredNotes = (notes: Note[], filter: string) => {
   };
 
 let mapStateToProps = (state: any) => {
-  return {filter: state.filter, modalOpen: state.modal, notes: getFilteredNotes(state.notes, state.filter)};
+  return {
+    filter: state.filter,
+    modalOpen: state.modal,
+    notes: getFilteredNotes(state.notes, state.filter),
+  };
 };
 
 export const App = connect(mapStateToProps)(Main);
