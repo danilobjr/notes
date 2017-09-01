@@ -17,7 +17,8 @@
     "baseUrl": "./src",
     "paths": {
       "components": ["components"],
-      "models": ["models"]
+      "models": ["models"],
+      "reducer": ["reducer"]
     }
   },
   "include": [

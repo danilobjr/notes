@@ -1,8 +1,11 @@
 import * as React from 'react';
-import {Component, CSSProperties} from 'react';
+import {Component, CSSProperties, ChangeEvent} from 'react';
 import {FloatingInput, Icon, FAB} from 'jsc-react-ui';
 import {CardList, CardForm} from 'components';
 import {Note} from 'models';
+import {Dispatch} from 'redux';
+import {connect} from 'react-redux';
+import * as actions from 'actions';
 
 const styles = {
   container: {
@@ -21,29 +24,24 @@ const styles = {
   },
 };
 
-interface State {
-  notes: Note[];
+interface Props {
   filter: string;
   modalOpen: boolean;
+  notes: Note[];
+  dispatch: any;
 }
 
-export class App extends Component<{}, State> {
-
-  state: State = {
-    notes: [],
-    filter: '',
-    modalOpen: false,
-  };
+class Main extends Component<Props, {}> {
 
   async componentDidMount() {
     const notes = await fetch('api/notes.json')
       .then(response => response.json());
 
-      this.setState({notes});
+      this.props.dispatch(actions.loadNotes(notes));
   }
 
   render() {
-    const {notes, modalOpen} = this.state;
+    const {notes, modalOpen, filter} = this.props;
 
     return (
       <div style={styles.container}>
@@ -51,8 +49,9 @@ export class App extends Component<{}, State> {
           <FloatingInput
             style={styles.filter}
             placeholder="Search"
+            value={filter}
             leftElement={<Icon style={styles.icon} name="search" />}
-            onChange={this.handleFilterChange}
+            onChange={this.handleFilterChange as any}
           />
           <FAB
             iconName="plus"
@@ -62,7 +61,7 @@ export class App extends Component<{}, State> {
           />
         </div>
         <CardList
-          cards={this.getFilteredCards()}
+          cards={this.props.notes}
         />
         <CardForm
           open={modalOpen}
@@ -73,35 +72,39 @@ export class App extends Component<{}, State> {
     );
   }
 
-  getFilteredCards = () => {
-    const {notes, filter} = this.state;
-
-    return notes.filter((note) => {
-      return note.title.toUpperCase().includes(filter.toUpperCase());
-    });
-  }
-
-  handleFilterChange = (event: any) => {
+  handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {value} = event.target;
-    this.setState({filter: value});
+    this.props.dispatch(actions.setFilter(value));
   }
 
   handleNewButtonClick = () => {
-    this.setState({modalOpen: true});
+    this.props.dispatch(actions.openAddModal());
   }
 
   handleOnModalClose = () => {
-    this.setState({modalOpen: false});
+    this.props.dispatch(actions.closeAddModal());
   }
 
   handleOnModalSave = (note: Note) => {
 
-    let newState = {...this.state, modalOpen: false};
-
-    if (note.title !== '') {
-      newState.notes = [...newState.notes, note];
-    }
-
-    this.setState(newState);
+    this.props.dispatch(actions.addNote(note.id, note.title, note.text));
+    this.handleOnModalClose();
   }
 }
+
+const getFilteredNotes = (notes: Note[], filter: string) => {
+
+    return notes.filter((note) => {
+      return note.title.toUpperCase().includes(filter.toUpperCase());
+    });
+  };
+
+let mapStateToProps = (state: any) => {
+  return {
+    filter: state.filter,
+    modalOpen: state.modal,
+    notes: getFilteredNotes(state.notes, state.filter),
+  };
+};
+
+export const App = connect(mapStateToProps)(Main);
